@@ -1,0 +1,60 @@
+
+<style>
+    .custom-width {
+        width: 300px;
+    }
+  </style>
+  
+  {% load static %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <div class="container mt-5 ">
+      
+      <form class="col-6 max-auto card p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h2> Update Recipe </h2>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Recipe Name</label> <hr>
+            <input  value="{{recp.recipe_name}}"
+            name="recipe_name" required type="text" class="form-control"
+  
+            >
+            
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" >Recipe Description</label>
+            <textarea value="" name="recipe_desc" required class="form-control">{{recp.recipe_desc}}
+            </textarea>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Recipe Image</label>
+              <input name="recipe_image"type="file" class="form-control"> </input>
+          </div>
+        
+          <button type="submit" class="btn btn-success">Update Recipe</button>
+          <br>
+          <div class="d-flex justify-content-center">
+            <a href="{% url 'recipe'  %}" class="btn btn-dark btn-sm">
+                Back to home page
+            </a>
+            
+            </div>
+        </form>
+  
+</div>
+
+
+  
+{% if messages %}
+  <div class="container mt-4">
+    {% for message in messages %}
+      <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>{{ message|capfirst }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
